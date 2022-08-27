@@ -4,4 +4,15 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * 3)];
 }
 
-console.log(getComputerChoice());
+function getPlayerChoice() {
+
+    let playerChoice = prompt('Player\'s Choice: ').toLowerCase();
+    if (playerChoice === 'rock' || playerChoice === 'paper' || playerChoice === 'scissors') {
+        return playerChoice;
+    } else {
+        console.log('Invalid Choice');
+        getPlayerChoice();
+    }
+}
+
+getPlayerChoice();
