@@ -15,4 +15,18 @@ function getPlayerChoice() {
     }
 }
 
-getPlayerChoice();
+function playRound(playerSelection, computerSelection) {
+
+    if (playerSelection === computerSelection) {
+        return `You Tie! ${playerSelection} draws with ${computerSelection}`;
+    }
+    if (playerSelection === 'rock') {
+        return (computerSelection === 'scissors') ? `You Win! ${playerSelection} beats ${computerSelection}` : `You Lose! ${computerSelection} beats ${playerSelection}`;
+    }
+    if (playerSelection === 'paper') {
+        return (computerSelection === 'rock') ? `You Win! ${playerSelection} beats ${computerSelection}` : `You Lose! ${computerSelection} beats ${playerSelection}`;
+    }
+    if (playerSelection === 'scissors') {
+        return (computerSelection === 'paper') ? `You Win! ${playerSelection} beats ${computerSelection}` : `You Lose! ${computerSelection} beats ${playerSelection}`;
+    }
+}
