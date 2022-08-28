@@ -25,13 +25,19 @@ function playRound(playerSelection, computerSelection) {
         return `You Tie! ${playerSelection} draws with ${computerSelection}`;
     }
     if (playerSelection === 'rock') {
-        return (computerSelection === 'scissors') ? `You Win! ${playerSelection} beats ${computerSelection}` : `You Lose! ${computerSelection} beats ${playerSelection}`;
+        return (computerSelection === 'scissors') ?
+         `You Win! ${playerSelection} beats ${computerSelection}` :
+          `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
     if (playerSelection === 'paper') {
-        return (computerSelection === 'rock') ? `You Win! ${playerSelection} beats ${computerSelection}` : `You Lose! ${computerSelection} beats ${playerSelection}`;
+        return (computerSelection === 'rock') ?
+         `You Win! ${playerSelection} beats ${computerSelection}` :
+          `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
     if (playerSelection === 'scissors') {
-        return (computerSelection === 'paper') ? `You Win! ${playerSelection} beats ${computerSelection}` : `You Lose! ${computerSelection} beats ${playerSelection}`;
+        return (computerSelection === 'paper') ?
+         `You Win! ${playerSelection} beats ${computerSelection}` :
+          `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
 }
 
@@ -51,7 +57,9 @@ function game(rounds) {
     if (playerScore === computerScore) {
         return `Game Tied! Player Score: ${playerScore}, Computer Score: ${computerScore}`;
     } else {
-        return (playerScore > computerScore) ? `You Win! Player Score: ${playerScore}, Computer Score: ${computerScore}` : `You Lose! Player Score: ${playerScore}, Computer Score: ${computerScore}`;
+        return (playerScore > computerScore) ?
+         `You Win! Player Score: ${playerScore}, Computer Score: ${computerScore}` :
+          `You Lose! Player Score: ${playerScore}, Computer Score: ${computerScore}`;
     }
 }
 
