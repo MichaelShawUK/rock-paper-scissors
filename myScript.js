@@ -4,83 +4,56 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * 3)];
 }
 
-function getPlayerChoice() {
-
-    let invalidInput = true;
-    let playerChoice = '';
-
-    while (invalidInput) {
-
-        playerChoice = prompt('Player\'s Choice: ').toLowerCase();
-        if (playerChoice === 'rock' || playerChoice === 'paper' || playerChoice === 'scissors') {
-            invalidInput = false;
-        }
-    }
-    return playerChoice;
-}
+let playerScore = 0;
+let cpuScore = 0;
 
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
-        return `You Tie! ${playerSelection} draws with ${computerSelection}`;
+        return `You Tie!`;
     }
-    if (playerSelection === 'rock') {
-        return (computerSelection === 'scissors') ?
-         `You Win! ${playerSelection} beats ${computerSelection}` :
-          `You Lose! ${computerSelection} beats ${playerSelection}`;
+    if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        playerScore += 1;
+        return 'Player WINS!';
     }
-    if (playerSelection === 'paper') {
-        return (computerSelection === 'rock') ?
-         `You Win! ${playerSelection} beats ${computerSelection}` :
-          `You Lose! ${computerSelection} beats ${playerSelection}`;
+    else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        playerScore += 1;
+        return 'Player WINS!';
     }
-    if (playerSelection === 'scissors') {
-        return (computerSelection === 'paper') ?
-         `You Win! ${playerSelection} beats ${computerSelection}` :
-          `You Lose! ${computerSelection} beats ${playerSelection}`;
+    else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        playerScore += 1;
+        return 'Player WINS!';
     }
-}
-
-function game(rounds) {
-
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for (let i = 0; i < rounds; i++) {
-
-        let result = playRound(getPlayerChoice(), getComputerChoice());
-        console.log(result);
-        result = result.charAt(4);
-        if (result === 'W') playerScore++;
-        if (result === 'L') computerScore++;
-    }
-    if (playerScore === computerScore) {
-        return `Game Tied! Player Score: ${playerScore}, Computer Score: ${computerScore}`;
-    } else {
-        return (playerScore > computerScore) ?
-         `You Win! Player Score: ${playerScore}, Computer Score: ${computerScore}` :
-          `You Lose! Player Score: ${playerScore}, Computer Score: ${computerScore}`;
+    else {
+        cpuScore += 1;
+        return 'CPU WINS!';
     }
 }
-
-// document.addEventListener('click', (e) => {
-//     console.log(e);
-//     if (e.target.tagName === 'BUTTON') {
-//         console.log(playRound(e.target.id, getComputerChoice()));
-//     }
-// });
 
 const buttons = document.querySelectorAll('.playBtn');
 const div = document.querySelector('#result');
+const cpuSpan = document.querySelector('#cpu');
+const playerSpan = document.querySelector('#player');
+const playerScoreDisplay = document.querySelector('#playerScore');
+const cpuScoreDisplay = document.querySelector('#CPUScore');
+const winner = document.querySelector('#winner');
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
-        div.textContent = playRound(e.target.id, getComputerChoice());
+        const cpu = getComputerChoice();
+        const player = e.target.id;
+        cpuSpan.textContent = cpu;
+        playerSpan.textContent = player;
+        div.textContent = playRound(player, cpu);
+        playerScoreDisplay.textContent = playerScore;
+        cpuScoreDisplay.textContent = cpuScore;
+        if (playerScore === 5 || cpuScore === 5) {
+            if (playerScore === 5) {
+                winner.textContent = 'Player is the overall winner!'
+            }
+            else {
+                winner.textContent = 'CPU is the overall winner!'
+            }
+        }
     })
 })
-
-// buttons.forEach((button) => {
-//     button.addEventListener('click', (e) => {
-//         playRound(e.target.id, getComputerChoice());
-//     })
-// })
