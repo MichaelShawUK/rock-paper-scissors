@@ -63,4 +63,24 @@ function game(rounds) {
     }
 }
 
-console.log(game(3));
+// document.addEventListener('click', (e) => {
+//     console.log(e);
+//     if (e.target.tagName === 'BUTTON') {
+//         console.log(playRound(e.target.id, getComputerChoice()));
+//     }
+// });
+
+const buttons = document.querySelectorAll('.playBtn');
+const div = document.querySelector('#result');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        div.textContent = playRound(e.target.id, getComputerChoice());
+    })
+})
+
+// buttons.forEach((button) => {
+//     button.addEventListener('click', (e) => {
+//         playRound(e.target.id, getComputerChoice());
+//     })
+// })
